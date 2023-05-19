@@ -4,7 +4,6 @@ The focus is on the analysis of the main memory and the persistence of paused vi
 
 This program
 - runs a sleep process
-- runs a sleep thread
 - opens a random port on the local machine
 - calls a remote port
 - opens a file on the local machine
@@ -13,9 +12,13 @@ To build the executables for Windows and Linux
 ```shell
 make all
 ```
-Only for Windows
+Only for Windows in 32-bit arch
 ```shell
-make windows
+make windows-32
+```
+Only for Windows in 64-bit arch
+```shell
+make windows-64
 ```
 Only for Linux
 ```shell

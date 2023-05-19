@@ -6,16 +6,20 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"runtime"
 	"strconv"
 )
 
 func main() {
-	StartProcess("sleep", "120") // start a process that sleeps for 120 seconds
-	go StartProcess("sleep")     // start a thread with sleep
-	go OpenPort(0)               // open an incoming port; Port 0 uses the next free port that is available
-	CallPort()                   // call thi.de:443 and never close the connection
-	OpenFile("./open_me.txt")    // open a file and never close it
-	<-make(chan bool)            // run endless
+	if runtime.GOOS == "windows" {
+		StartProcess("timeout", "120") // start a process in windows that sleeps for 120 seconds
+	} else {
+		StartProcess("sleep", "120") // start a process in linux that sleeps for 120 seconds
+	}
+	go OpenPort(0)            // open an incoming port; Port 0 uses the next free port that is available
+	CallPort()                // call thi.de:443 and never close the connection
+	OpenFile("./open_me.txt") // open a file and never close it
+	<-make(chan bool)         // run endless
 }
 
 func StartProcess(cmd string, args ...string) *exec.Cmd {
