@@ -20,10 +20,16 @@ Only for Windows in 64-bit arch
 ```shell
 make windows-64
 ```
-Only for Linux
+Only for Linux in 32-bit arch
 ```shell
-make linux
+make linux-32
 ```
+Only for Linux in 64-bit arch
+```shell
+make linux-64
+```
+For ARM architecture append `-arm` onto the make command.
+
 Check opened ports, files and processes with
 ```shell
 ./check.sh
