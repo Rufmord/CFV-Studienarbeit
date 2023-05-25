@@ -6,6 +6,7 @@ This program
 - runs a sleep process
 - opens a random port on the local machine
 - calls a remote port
+- loads an image
 - opens a file on the local machine
 ### Execute
 To build the executables for Windows and Linux

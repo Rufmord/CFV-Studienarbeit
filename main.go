@@ -18,6 +18,7 @@ func main() {
 	}
 	go OpenPort(0)            // open an incoming port; Port 0 uses the next free port that is available
 	CallPort()                // call thi.de:443 and never close the connection
+	LoadImage()               // load an image from thi.de
 	OpenFile("./open_me.txt") // open a file and never close it
 	<-make(chan bool)         // run endless
 }
@@ -52,8 +53,18 @@ func CallPort() {
 	}
 }
 
+func LoadImage() {
+	image, err := http.Get("https://www.thi.de/typo3conf/ext/in2template/Resources/Public/Images/Site/thi_logo_wb_RGB.svg")
+	// save image in variable to write it in RAM
+	if image == nil || err != nil {
+		panic("Could not load image of thi.de because of: " + err.Error())
+	}
+}
+
 func OpenFile(path string) {
-	_, err := os.Open(path)
+	f, err := os.Open(path)
+	data := make([]byte, 6)
+	_, err = f.Read(data)
 	if err != nil {
 		panic("Could not open file because of: " + err.Error())
 	}
