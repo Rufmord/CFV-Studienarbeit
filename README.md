@@ -29,6 +29,11 @@ Only for Linux in 64-bit arch
 ```shell
 make linux-64
 ```
+Only for Mac in 64-bit arch
+```shell
+make darwin-64
+```
+
 For ARM architecture append `-arm` onto the make command.
 
 Check opened ports, files and processes with
